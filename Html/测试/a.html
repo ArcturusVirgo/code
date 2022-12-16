@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        #cc {
+            position: fixed;
+            left: 100px;
+            top: 100px;
+            width: 100px;
+            height: 100px;
+            z-index: 99;
+        }
+    </style>
+</head>
+
+<body>
+
+</body>
+<script>
+    var AnNiuNeiRong = [ // 按钮内容
+        ['一键复制','btn1', '100', '100'],
+        ['开发商未找到','btn2', '100', '200'],
+        ['物管公司未找到','btn3', '100', '300'],
+    ];
+    var btns = new Array();
+    for (var i = 0; i < AnNiuNeiRong.length; i++) {
+        var temp_btn = document.createElement('button');
+        temp_btn.textContent = AnNiuNeiRong[i][0];
+        temp_btn.id = AnNiuNeiRong[i][1];
+        temp_style = 'position:fixed; left:'+AnNiuNeiRong[i][2]+'px; top:'+AnNiuNeiRong[i][3]+'px; width:100px; height:100px;z-index: 99;'
+        temp_btn.setAttribute('style', temp_style);
+        document.body.appendChild(temp_btn);
+        btns[i] = temp_btn
+    }
+
+    btns[0].onclick = function(){
+        alert(btns[1].textContent);
+    }
+
+
+
+
+</script>
+
+</html>

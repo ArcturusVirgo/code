@@ -1,0 +1,20 @@
+# added by Zavijah
+
+.idea/
+
+*.dsp
+*.dsw
+*.ncb
+*.opt
+*.plg
+
+LaTex/**/*.pdf
+LaTex/**/*.PNG
+LaTex/**/*.aux
+LaTex/**/*.log
+LaTex/**/*.gz
+LaTex/**/*.out
+LaTex/**/*.toc
+LaTex/**/*.bcf
+LaTex/**/*.xml
+!LaTex/document/

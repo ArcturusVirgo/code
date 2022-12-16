@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .bg {
+            height: 100vh;
+            width: 100vw;
+
+            background-image: url("img/0.jpg");
+            background-repeat: no-repeat;
+
+            padding: 1px;
+            box-sizing: border-box;
+            z-index: 1;
+        }
+
+        .content {
+            position: absolute;
+            top: 200px;
+            left: 150px;
+        }
+
+        .drag {
+            width: 450px;
+            height: auto;
+
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 45px rgb(0 0 0 / 10%);
+            border: 1px solid rgba(255, 255, 255, .5);
+            border-right: 1px solid rgba(255, 255, 255, .2);
+            border-bottom: 1px solid rgba(255, 255, 255, .2);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        table {
+            width: 450px;
+            padding: 10px;
+
+            text-align: center;
+            font-family: 苹方-简, sans-serif;
+            font-size: 24px;
+            color: #ecf0f1;
+
+            border-spacing: 10px 15px;
+        }
+
+        table caption {
+            margin-top: 30px;
+            font-family: DS-Digital, sans-serif;
+        }
+
+        table td {
+            overflow: hidden;
+            padding: 5px;
+            border-radius: 7px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        table td.task {
+            font-family: DS-Digital, sans-serif;
+        }
+
+    </style>
+
+
+</head>
+<body>
+<p id="eee"></p>
+<div class="bg">
+    <div class="content">
+        <div class="drag">
+            <table>
+                <caption id="times">
+                </caption>
+                <thead>
+                <tr>
+                    <td>任务</td>
+                    <td>时间</td>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    Date.prototype.format = function (format) {
+        var date = {
+            "M+": this.getMonth() + 1,
+            "d+": this.getDate(),
+            "h+": this.getHours(),
+            "m+": this.getMinutes(),
+            "s+": this.getSeconds(),
+            "q+": Math.floor((this.getMonth() + 3) / 3),
+            "S+": this.getMilliseconds()
+        };
+        if (/(y+)/i.test(format)) {
+            format = format.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
+        }
+        for (var k in date) {
+            if (new RegExp("(" + k + ")").test(format)) {
+                format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? date[k] : ("00" + date[k]).substr(("" + date[k]).length));
+            }
+        }
+        return format;
+    }
+
+    var format = function (number, form) {
+        var forms = form.split('.'), number = '' + number, numbers = number.split('.')
+            , leftnumber = numbers[0].split('')
+            , exec = function (lastMatch) {
+            if (lastMatch == '0' || lastMatch == '#') {
+                if (leftnumber.length) {
+                    return leftnumber.pop();
+                } else if (lastMatch == '0') {
+                    return lastMatch;
+                } else {
+                    return '';
+                }
+            } else {
+                return lastMatch;
+            }
+        }, string
+
+        string = forms[0].split('').reverse().join('').replace(/./g, exec).split('').reverse().join('');
+        string = leftnumber.join('') + string;
+
+        if (forms[1] && forms[1].length) {
+            leftnumber = (numbers[1] && numbers[1].length) ? numbers[1].split('').reverse() : [];
+            string += '.' + forms[1].replace(/./g, exec);
+        }
+        return string.replace(/\/.$/, '');
+    };
+
+    function getDate(strDate) {
+        var date = eval('new Date(' + strDate.replace(/\d+(?=-[^-]+$)/,
+            function (a) {
+                return parseInt(a, 10) - 1;
+            }).match(/\d+/g) + ')');
+        return date;
+    }
+
+    function getTimes() {
+        document.getElementById("times").innerHTML = ((new Date()).format("yyyy-MM-dd hh:mm:ss"))
+        setTimeout(getTimes, 1000)
+    }
+
+    function timeFn(times) {
+        var dateBegin = new Date(times);//将-转化为/，使用new Date
+        var dateEnd = new Date();//获取当前时间
+        var dateDiff = dateEnd.getTime() - dateBegin.getTime();//时间差的毫秒数
+        var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000));//计算出相差天数
+        var leave1 = dateDiff % (24 * 3600 * 1000) //计算天数后剩余的毫秒数
+        var hours = Math.floor(leave1 / (3600 * 1000))//计算出小时数
+        var leave2 = leave1 % (3600 * 1000) //计算小时数后剩余的毫秒数
+        var minutes = Math.floor(leave2 / (60 * 1000))//计算相差分钟数
+        var leave3 = leave2 % (60 * 1000) //计算分钟数后剩余的毫秒数
+        var seconds = Math.round(leave3 / 1000)
+        // console.log(" 相差 " + dayDiff + "天 " + hours + "小时 " + minutes + " 分钟" + seconds + " 秒")
+        return [-dayDiff, -hours, -minutes, -seconds]
+    }
+
+
+    function write() {
+        $.getJSON("data.json", function (data) {
+            const tbody = document.querySelector('tbody');
+            tbody.innerHTML = ''
+            let time_d;
+            for (const key in data) {
+                const tr = document.createElement('tr');
+                tbody.appendChild(tr)
+
+                const td1 = document.createElement('td');
+                const td2 = document.createElement('td');
+                td1.setAttribute('class', 'limit')
+                td2.setAttribute('class', 'task')
+                td1.innerHTML = key
+                if (data[key]===""){
+                    td2.innerHTML = "∞"
+                } else {
+                    time_d = timeFn(data[key])
+                    td2.innerHTML = format(time_d[0], "00") + ' ' + format(time_d[1], "00") + ':' + format(time_d[2], "00")
+                }
+                tr.appendChild(td1)
+                tr.appendChild(td2)
+            }
+        });
+        setTimeout(write, 1000)
+    }
+
+    write()
+    getTimes()
+
+
+</script>
+
+</body>
+</html>

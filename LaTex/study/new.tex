@@ -1,0 +1,213 @@
+\documentclass[UTF-8]{ctexart}
+\usepackage{geometry}  % 调整页边距的包
+
+\geometry{left=2cm,right=2cm}  % 调整页边距
+\everymath{\displaystyle}  % 所有公式都使用行间公式大小
+\begin{document}
+
+\section{理论力学第一章总结}
+\subsection{运动学方程}
+\begin{enumerate}
+    \item 矢量形式：
+    \item 直角坐标：$
+              \left \{ \begin{array}{l}
+                  x=x(t) \\
+                  y=y(t) \\
+                  z=z(t) \\
+              \end{array} \right.
+          $
+    \item 极坐标：$
+              \left \{ \begin{array}{l}
+                  r=r(t)              \\
+                  \theta = \theta (t) \\
+              \end{array} \right.
+          $
+    \item 自然坐标(弧坐标)：$
+              s = s(t)
+          $
+    \item 柱坐标：$
+              \left \{ \begin{array}{l}
+                  r=r(t)              \\
+                  \theta = \theta (t) \\
+                  z=z(t)              \\
+              \end{array} \right.
+          $
+    \item 球坐标：$
+              \left \{ \begin{array}{l}
+                  r=r(t)                \\
+                  \theta = \theta (t)   \\
+                  \varphi = \varphi (t) \\
+              \end{array} \right.
+          $
+\end{enumerate}
+
+\begin{table}[h]
+    \begin{tabular}{c|c|c|c}
+        \hline
+         & 运动学方程 & 速度 & 加速度 \\
+        \hline
+        矢量形式
+         & $
+            \overrightarrow{r} = \overrightarrow{r}(t)
+        $
+         & $
+            v=\dot{\overrightarrow{r} }
+        $
+         & $
+            a=\dot{\overrightarrow{v} } =\ddot{\overrightarrow{r} }
+        $                             \\
+        \hline
+        直角坐标
+         & $
+            \left \{ \begin{array}{lll}
+                         x=x(t) \\
+                         y=y(t) \\
+                         z=z(t) \\
+                     \end{array} \right.
+        $
+         & $
+            \left \{ \begin{array}{lll}
+                         v_x= \dot{x} \\
+                         v_y= \dot{y} \\
+                         v_z= \dot{z} \\
+                     \end{array} \right.
+        $
+         & $
+            \left \{ \begin{array}{lll}
+                         a_x= \ddot{x} \\
+                         a_y= \ddot{y} \\
+                         a_z= \ddot{z} \\
+                     \end{array} \right.
+        $                             \\
+        \hline
+        极坐标
+         & $
+            \left\{ \begin{array}{ll}
+                        r=r(t)              \\
+                        \theta = \theta (t) \\
+                    \end{array} \right.
+        $
+         & $
+            \left\{ \begin{array}{ll}
+                        v_r=\dot{r}                 \\
+                        v_{\theta} = r \dot{\theta} \\
+                    \end{array} \right.
+        $
+         & $
+            \left\{ \begin{array}{ll}
+                        a_r=\ddot{r}-r {\dot{\theta}}^2                   \\
+                        a_{\theta} = r \ddot{\theta}+2\dot{r}\dot{\theta} \\
+                    \end{array} \right.
+        $                             \\
+        \hline
+        自然坐标
+         & $
+            s=s(t)
+        $
+         & $
+            v=v_t=\dot{s}
+        $
+         & $
+            \left \{ \begin{array}{ll}
+                         a_t=\ddot{s}         \\
+                         a_n={v^2 \over \rho} \\
+                     \end{array} \right.
+        $                             \\
+        \hline
+        球坐标
+         & $
+            \left \{ \begin{array}{lll}
+                         r=r(t)                \\
+                         \theta = \theta (t)   \\
+                         \varphi = \varphi (t) \\
+                     \end{array} \right.
+        $
+         & $
+            \left \{ \begin{array}{lll}
+                         v_r=\dot{r}                               \\
+                         v_{\theta}=r\dot{\theta}                  \\
+                         v_{\varphi}=r \sin {\theta} \dot{\varphi} \\
+                     \end{array} \right.
+        $
+         & $
+            \left \{ \begin{array}{lll}
+                     \end{array} \right.
+        $                             \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\section{量子力学第二章总结}
+\subsection{质点组}
+\begin{itemize}
+
+    \item 内力的性质：
+          \begin{enumerate}
+              \item 质点组内力之和为0
+              \item 内力对某点$O$的力矩之和为0
+              \item 内力做功之和一般不为0
+          \end{enumerate}
+    \item 质心：
+          \begin{enumerate}
+              \item 质心坐标：$ \vec{r}_c=\frac{ \sum\limits_{i=1}^nm_i\vec{r}_i}{m} $
+              \item 质心速度：$\vec{v}_c=\frac{d\vec{r}_c}{dt}=\frac{ \sum\limits_{i=1}^n m_i\dot{\vec{r}_i}}{m}=\frac{ \sum\limits_{i=1}^n m_i\vec{v}_i}{m}$
+              \item 质心加速度：$\vec{a}_c=\frac{d\vec{c}_c}{dt}=\frac{ \sum\limits_{i=1}^n m_i\dot{\vec{v}_i}}{m}=\frac{ \sum\limits_{i=1}^n m_i\vec{a}_i}{m}$
+          \end{enumerate}
+\end{itemize}
+\subsection{动量定理与动量守恒定律}
+\subsubsection{动量定理}
+\begin{itemize}
+    \item 动量
+          \begin{itemize}
+              \item 惯性系$S$：$\vec{p}=\frac{ \sum\limits_{i=1}^n m_i\vec{v}_i}{m}$
+              \item 非惯性系$S'$：${\vec{p}}\ ' =\frac{ \sum\limits_{i=1}^n m_i{\vec{v}_i}\,'}{m}$
+              \item 两者之间的关系：$\vec{p}=m\vec{v}_{O'}+\sum_{i=1}^n m_i {\vec{v}_i}\,'$
+          \end{itemize}
+    \item 质心坐标系下的动量
+          \begin{itemize}
+              \item 非惯性系$S'$：$\vec{p}\ '=0$
+              \item 惯性系$S$：$\vec{p}=m\vec{v}_c$
+          \end{itemize}
+    \item 惯性系$S$下的动量定理：$ \frac{d\vec{p}}{dt}=\vec{F}^{(e)} $
+    \item 非惯性系$S'$下的动量定理：$\frac{d^*\vec{p}}{dt}=\vec{F}^{(e)}-m\vec{a}_{O'}$
+\end{itemize}
+\subsubsection{质心运动定理}
+质心运动定理：$\vec{F}^{(e)}=m \vec{a}_c$
+\subsubsection{质点组动量守恒定律}
+质点组动量守恒定律：$\frac{d\vec{p}}{dt}=0$
+\subsection{动量矩定理与动量矩守恒定理}
+\subsubsection{对惯性系某固定点$O$的动量矩定理}
+\begin{itemize}
+    \item 动量矩 \begin{itemize}
+              \item 对惯性系某固定点$O$的动量矩：$\vec{J}_O=\sum_{i=1}^n \left(\vec{r}_i \times m_i \vec{v}_i\right)$
+              \item 对非惯性系某固定点$O$的动量矩：$\vec{J}_O^{\prime} = \sum_{i=1}^{n} \left(\vec{r}_{i}^{\ \prime} \times m_{i} \vec{v}_{i}^{\,\prime}\right)$
+              \item 两者间的关系（对于质心系）：$\vec{J}_O=\vec{r}_c^{\ \prime} \times m\vec{v}_c+\vec{J}_c^{\prime}$
+          \end{itemize}
+
+\end{itemize}
+\begin{table}[h]
+    \begin{tabular}{c|c|c}
+        \hline
+               & 动能定理              & 机械能守恒定律 \\
+        \hline
+        惯性系 & $
+            dW=dT=\sum_{i=1}^n \vec{F}_i^{(e)} \cdot d\vec{r}_i + \sum_{i=1}^n \vec{F}_i^{(i)} \cdot d\vec{r}_i
+        $      & \begin{tabular}{c}
+                     $T+V=E$ \\
+                     $T+V^{(e)}+V^{(i)}=E$
+                 \end{tabular}                   \\
+        \hline
+        质心系 & $
+            dW^{\prime}=dT^{\prime}=\sum_{i=1}^n \vec{F}_i^{(e)} \cdot d\vec{r}_i^{\,\prime} + \sum_{i=1}^n \vec{F}_i^{(i)} \cdot d\vec{r}_i^{\,\prime}
+        $
+               & $
+            T^{\prime}+V=E^{\prime}
+        $                                               \\
+        \hline
+    \end{tabular}
+\end{table}
+两题问题的动力学方程：$\mu \ddot{\vec{r}}=-k^2\frac{m}{r^2}\vec{e}_r$\\
+变质量物体的动力学方程：$m\frac{d\vec{v}}{dt}+\frac{dm}{dt}\vec{v}-\frac{dm}{dt}\vec{u}=\vec{F}$或$\frac{d(m\vec{v})}{dt}-\vec{u}\frac{dm}{dt}=\vec{F}$
+
+
+\end{document}
